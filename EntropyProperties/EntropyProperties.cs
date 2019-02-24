@@ -16,5 +16,27 @@ namespace EntropyProperties
         {
             InitializeComponent();
         }
+
+        private void EntropyProperties_Load(object sender, EventArgs e)
+        {
+            EntropyPropertiesDefinition properties = new EntropyPropertiesDefinition();
+        }
+
+        private void btnMutualProb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCondProbAB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCondProbBA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

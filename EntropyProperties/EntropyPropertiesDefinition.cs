@@ -78,14 +78,14 @@ namespace EntropyProperties
             ProbibilityMatrixSimultaneous();
 
             // Вероятности символов первичного алфавита
-            AlphabethSymbolProbibility(out symbolProbibilityA);
+            AlphabethSymbolProbibility(out symbolProbibilityA, true);
             // Вероятности символов вторичного алфавита
-            AlphabethSymbolProbibility(out symbolProbibilityB);
+            AlphabethSymbolProbibility(out symbolProbibilityB, false);
 
             // Формирование матриц условных вероятностей первичного и вторичного алфавита
             ConditionalProbibilityMatrix(out conditionalProbibilityMatrixAB, SymbolProbibilityA);
             // Формирование матриц условных вероятностей вторичного и первичного алфавита
-            ConditionalProbibilityMatrix(out conditionalProbibilityMatrixBA, SymbolProbibilityA);
+            ConditionalProbibilityMatrix(out conditionalProbibilityMatrixBA, SymbolProbibilityB);
 
             // Поиск взаимной энтропии H(A,B)
             FindEntropyAB();
@@ -154,7 +154,7 @@ namespace EntropyProperties
         /// Получена на основании матрицы совместного появления
         /// <param name="probAlf"> Вероятности символов алфавита</param>
         /// </summary>
-        public void AlphabethSymbolProbibility(out double[] probAlf)
+        public void AlphabethSymbolProbibility(out double[] probAlf, bool AB)
         {
             probAlf = new double[m];
             for (int i = 0; i < m; i++)
@@ -162,7 +162,7 @@ namespace EntropyProperties
                 double elemAlfavita = 0;
                 for (int j = 0; j < m; j++)
                 {
-                    elemAlfavita += ProbibilityMatrix[i, j];
+                    elemAlfavita += AB ? ProbibilityMatrix[i, j] : ProbibilityMatrix[j, i];
                 }
                 probAlf[i] = elemAlfavita;
             }
